@@ -2641,6 +2641,18 @@ function openKalender() {
         var termine = (p.vorstellungen && p.vorstellungen.length) ? p.vorstellungen.slice().sort() : (p.prem ? [p.prem] : []);
         var fsD = ZOOM ? "11px" : "10px";
         bar = "";
+        // Proben auch bei Einzelterminen als gelbe Striche zeigen
+        (p.proben || []).forEach(function(dt, pi){
+          if (!inWindow(dt)) return;
+          if (termine.indexOf(dt) > -1) return;
+          var eBl = parseProbenz(p.probenz && p.probenz[pi]);
+          var ePz = eBl.map(function(b){ return "\n" + b.z + (b.t ? "  " + b.t : ""); }).join("");
+          var eBest = pplanGedeckt(dt);
+          var eCol = eBest ? "#f5e050" : "#a59b57";
+          var eHin = eBest ? "" : (pplanProv(dt) ? "\nlt. Monatsplan provisorisch" : "\nnicht best\u00e4tigt");
+          bar += "<div style='" + STRICH_CSS + eCol + ";left:calc("
+               + (xpct(dt) + HALFDAY).toFixed(3) + "% - " + STRICH_OFF + "px)' title='" + p.titel + "\n" + fmt(dt) + ePz + eHin + "'></div>";
+        });
         termine.forEach(function(dt, di){
           if (!inWindow(dt)) return;
           var dx = xpct(dt) + HALFDAY;
@@ -3518,8 +3530,8 @@ filterAktuell();
       <p style="margin-top:0">Die <strong>WebApp</strong> besteht aus einer einzigen HTML-Datei (ca. 300kb inkl. JS und CSS) ohne externe Abh&auml;ngigkeiten (kein Datenaustausch mit externen Servern oder Diensten &ndash; ausgenommen Links in der Titelzeile) und wird &uuml;ber GitHub gehostet (https://...). Sie l&auml;uft auf allen g&auml;ngigen Browsern unter MacOS, Windows, Android und iOS (bei Bedarf auch offline als lokale Html-Datei).</p>
       <p>Die Daten basieren auf den Spielplanunterlagen der technischen Direktion, des KBB sowie der Website des Opernhauses Z&uuml;rich. &Auml;nderungen w&auml;hrend laufender Spielzeit sind m&ouml;glicherweise nicht ber&uuml;cksichtigt, werden aber kontinuierlich aktualisiert.</p>
       <p>Diese WebApp ist als Hilfsmittel f&uuml;r den Produktionsalltag gedacht. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t der Inhalte wird keine Gew&auml;hr &uuml;bernommen.</p>
-      <p style="margin-top:20px">R&uuml;ckmeldungen zu Funktionsfehlern, unvollst&auml;ndigen Angaben sowie Verbesserungsvorschl&auml;ge an: <a href="mailto:Raphael.Paciorek@opernhaus.ch?subject=SPiELPLAN_iNFO_OHZ v_ton_sp_gh_a_190826_347x" style="color:inherit;text-decoration:underline">Raphael.Paciorek@opernhaus.ch</a></p>
-      <p style="color:#888;margin-top:8px">v_ton_sp_gh_a_190826_347x</p>
+      <p style="margin-top:20px">R&uuml;ckmeldungen zu Funktionsfehlern, unvollst&auml;ndigen Angaben sowie Verbesserungsvorschl&auml;ge an: <a href="mailto:Raphael.Paciorek@opernhaus.ch?subject=SPiELPLAN_iNFO_OHZ v_ton_sp_gh_a_190826_348x" style="color:inherit;text-decoration:underline">Raphael.Paciorek@opernhaus.ch</a></p>
+      <p style="color:#888;margin-top:8px">v_ton_sp_gh_a_190826_348x</p>
       </div>
   </div>
 </div>
