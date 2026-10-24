@@ -609,11 +609,53 @@ input[type=date]::-webkit-calendar-picker-indicator { filter: invert(0.8) bright
   #menu-btn { animation: none; }
   #about-desk { animation: menu-fade-first 10s ease-in-out 1s 1; }
 }
+/* Seit 24.10.2026 - Desktop-Titelzeile: SPiELPLAN - PROBENPLAN - DOKU - LOGBUCH -
+   DRIVE - NOTES - Menue - ? - Logo (mittig zwischen ? und KALENDER) - KALENDER.
+   Graue Text-Buttons wie der Menue-Button; Koffer/Stift entfallen auf dem Desktop,
+   DOKU und LOGBUCH stehen dort nicht mehr im Menue. Mobil unveraendert.
+   Stand davor: 241026_1136. */
+.gr-btn { display: none; }
+@media (min-width: 1000px) and (hover: hover) and (pointer: fine) {
+  #main-h1 #sp-titel { order: 0; }
+  #main-h1 .bs-btn { order: 1; }
+  #main-h1 .gr-btn { order: 2; display: inline-flex; align-items: center; justify-content: center;
+    height: 24px; box-sizing: border-box; padding: 0 10px; margin-left: 14px;
+    background: #1e1e1e; color: #bbb; border-top: 1px solid #585858; border-left: 1px solid #484848;
+    border-bottom: 1px solid #0d0d0d; border-right: 1px solid #0d0d0d; border-radius: 3px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-decoration: none;
+    flex-shrink: 0; position: relative; top: 1px; cursor: pointer;
+    -webkit-user-select: none; user-select: none; }
+  #main-h1 .gr-btn:hover { color: #eee; border-color: #6a6a6a; }
+  /* Variante C: Rahmen leicht tuerkis und feiner tuerkiser Schein, auch beim Menue-Knopf */
+  #main-h1 .gr-btn, #main-h1 #menu-btn {
+    border-top-color: #2a4f4f !important; border-left-color: #223f3f !important;
+    border-bottom-color: #0a1414 !important; border-right-color: #0a1414 !important;
+    box-shadow: 0 0 6px rgba(15,232,232,0.13), 0 1px 3px rgba(0,0,0,0.5); }
+  #main-h1 .gr-btn:hover, #main-h1 #menu-btn:hover { color: #eee;
+    border-top-color: #3a6a6a !important; border-left-color: #2f5555 !important;
+    box-shadow: 0 0 8px rgba(15,232,232,0.2), 0 1px 3px rgba(0,0,0,0.5); }
+  /* Menue-Knopf: Striche beim Ueberfahren heller, wie die Schrift der anderen Knoepfe */
+  #main-h1 #menu-btn svg { transition: stroke 0.1s; }
+  #main-h1 #menu-btn:hover svg { stroke: #eee; }
+  #main-h1 .dn-btn { display: none !important; }
+  #main-h1 #menu-btn { order: 3; }
+  #main-h1 #about-desk { order: 4; }
+  #main-h1 .ohz-logo { order: 5; position: relative !important; left: auto !important;
+    transform: none !important; bottom: auto !important; top: 1px !important;
+    margin-left: auto !important; margin-right: auto !important; }
+  #main-h1 #kal-btn { order: 6; margin-left: 0 !important; }
+  #menu-drop .mi-nurmob { display: none !important; }
+}
+/* Schmale Desktop-Fenster: Logo ausblenden, KALENDER bleibt rechts */
+@media (min-width: 1000px) and (max-width: 1199px) and (hover: hover) and (pointer: fine) {
+  #main-h1 .ohz-logo { display: none !important; }
+  #main-h1 #kal-btn { margin-left: auto !important; }
+}
 </style>
 </head>
 <body>
 <div id="header">
-  <h1 id="main-h1" style="white-space:nowrap;width:100%;display:flex;align-items:flex-end"><span id="sp-titel" onclick="window.open('https://www.opernhaus.ch/spielplan/kalendarium/','_blank')" style="cursor:pointer;color:#ffffff;font-size:18px;line-height:1"><span class="sp-eine">SPiELPLAN</span><span class="sp-zwei"><span class="sp-a"><span>SPiEL</span><span>PLAN</span></span></span></span><span id="info-i" onclick="document.getElementById('info-modal').style.display='flex'" style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border:1px solid #bcc2c8;border-radius:50%;font-size:10px;color:#bcc2c8;cursor:pointer;margin-left:12px;font-style:italic;font-family:Georgia,serif;position:relative;top:-2px;display:none">i</span><a title="OHZ Backstage" class="bs-btn" style="display:inline-flex;align-items:center;justify-content:center;margin-left:14px;background:#2e2a63;color:#82ebf0;border-top:1px solid #4a4590;border-bottom:1px solid #14122e;border-left:1px solid #3a3578;border-right:1px solid #14122e;border-radius:3px;height:20px;box-sizing:border-box;padding:0 8px;font-size:11px;font-weight:bold;letter-spacing:0.06em;text-decoration:none;flex-shrink:0;position:relative;top:1px;-webkit-tap-highlight-color:transparent"><span class="bs-mob">OHZ</span><span class="bs-desk">PROBENPLAN</span></a><span id="menu-btn" onclick="toggleMenu(event)" title="Men&uuml;"><svg width="15" height="11" viewBox="0 0 15 11" fill="none" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"><line x1="1" y1="1.5" x2="14" y2="1.5"/><line x1="1" y1="5.5" x2="14" y2="5.5"/><line x1="1" y1="9.5" x2="14" y2="9.5"/></svg></span><a href="https://www.opernhaus.ch" target="_blank" rel="noopener noreferrer" class="ohz-logo" style="margin-left:calc(32% - 45px);text-decoration:none"><span class="ohz-txt">OPERNHAUS Z&Uuml;RICH</span><span class="bild-ton">TON &amp; BILD</span></a><a href="https://drive.google.com/drive/folders/1WM9YPpCGen3EHeY3C5c_k_9tL9kMRel_" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#1e1e1e;color:#bbb;font-size:11px;font-weight:bold;text-decoration:none;border-top:1px solid #585858;border-bottom:1px solid #0d0d0d;border-left:1px solid #484848;border-right:1px solid #0d0d0d;margin-left:auto;margin-right:10px;flex-shrink:0;position:relative;top:1px" id="dbtn" class="dn-btn" title="Google Drive"><svg width='13' height='13' viewBox='0 0 20 20' fill='none' stroke='#bbb' stroke-width='1.35' stroke-linejoin='round' stroke-linecap='round'><path d='M3.5 7h13l-1.1 9.6H4.6Z'/><path d='M7 7V5.6a3 3 0 0 1 6 0V7'/></svg></a><!-- GOOGLE KEEP - vorlaeufig ersetzt durch NOTES, bei Bedarf wieder aktivieren:
+  <h1 id="main-h1" style="white-space:nowrap;width:100%;display:flex;align-items:flex-end"><span id="sp-titel" onclick="window.open('https://www.opernhaus.ch/spielplan/kalendarium/','_blank')" style="cursor:pointer;color:#ffffff;font-size:18px;line-height:1"><span class="sp-eine">SPiELPLAN</span><span class="sp-zwei"><span class="sp-a"><span>SPiEL</span><span>PLAN</span></span></span></span><span id="info-i" onclick="document.getElementById('info-modal').style.display='flex'" style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border:1px solid #bcc2c8;border-radius:50%;font-size:10px;color:#bcc2c8;cursor:pointer;margin-left:12px;font-style:italic;font-family:Georgia,serif;position:relative;top:-2px;display:none">i</span><a title="OHZ Backstage" class="bs-btn" style="display:inline-flex;align-items:center;justify-content:center;margin-left:14px;background:#2e2a63;color:#82ebf0;border-top:1px solid #4a4590;border-bottom:1px solid #14122e;border-left:1px solid #3a3578;border-right:1px solid #14122e;border-radius:3px;height:20px;box-sizing:border-box;padding:0 8px;font-size:11px;font-weight:bold;letter-spacing:0.06em;text-decoration:none;flex-shrink:0;position:relative;top:1px;-webkit-tap-highlight-color:transparent"><span class="bs-mob">OHZ</span><span class="bs-desk">PROBENPLAN</span></a><a href="https://raphcoda.github.io/spielplan_web-app/ablaufplan/" target="_blank" rel="noopener noreferrer" class="gr-btn">DOKU</a><a href="https://raphcoda.github.io/spielplan_web-app/Logbuch/" target="_blank" rel="noopener noreferrer" class="gr-btn">LOGBUCH</a><a href="https://drive.google.com/drive/folders/1WM9YPpCGen3EHeY3C5c_k_9tL9kMRel_" target="_blank" rel="noopener noreferrer" class="gr-btn">DRIVE</a><a href="https://raphcoda.github.io/spielplan_web-app/notes/" target="_blank" rel="noopener noreferrer" class="gr-btn">NOTES</a><span id="menu-btn" onclick="toggleMenu(event)" title="Men&uuml;"><svg width="15" height="11" viewBox="0 0 15 11" fill="none" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"><line x1="1" y1="1.5" x2="14" y2="1.5"/><line x1="1" y1="5.5" x2="14" y2="5.5"/><line x1="1" y1="9.5" x2="14" y2="9.5"/></svg></span><a href="https://www.opernhaus.ch" target="_blank" rel="noopener noreferrer" class="ohz-logo" style="margin-left:calc(32% - 45px);text-decoration:none"><span class="ohz-txt">OPERNHAUS Z&Uuml;RICH</span><span class="bild-ton">TON &amp; BILD</span></a><a href="https://drive.google.com/drive/folders/1WM9YPpCGen3EHeY3C5c_k_9tL9kMRel_" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#1e1e1e;color:#bbb;font-size:11px;font-weight:bold;text-decoration:none;border-top:1px solid #585858;border-bottom:1px solid #0d0d0d;border-left:1px solid #484848;border-right:1px solid #0d0d0d;margin-left:auto;margin-right:10px;flex-shrink:0;position:relative;top:1px" id="dbtn" class="dn-btn" title="Google Drive"><svg width='13' height='13' viewBox='0 0 20 20' fill='none' stroke='#bbb' stroke-width='1.35' stroke-linejoin='round' stroke-linecap='round'><path d='M3.5 7h13l-1.1 9.6H4.6Z'/><path d='M7 7V5.6a3 3 0 0 1 6 0V7'/></svg></a><!-- GOOGLE KEEP - vorlaeufig ersetzt durch NOTES, bei Bedarf wieder aktivieren:
 <a href="https://keep.google.com/#LIST/1_K2fuuC7XY9k2Cd6eg8oLcLuF_pSCmvaM8uw_XeN6IxMYh6WARY2lbzFqiDPzA" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#1e1e1e;color:#bbb;font-size:11px;font-weight:bold;text-decoration:none;border-top:1px solid #585858;border-bottom:1px solid #0d0d0d;border-left:1px solid #484848;border-right:1px solid #0d0d0d;margin-right:10px;flex-shrink:0;position:relative;top:1px" class="dn-btn" title="Google Keep"><svg width='13' height='13' viewBox='0 0 20 20' fill='none' stroke='#bbb' stroke-width='1.35' stroke-linejoin='round' stroke-linecap='round'><path d='M3.4 16.6l0.8-3.4L13.4 3.9a1.4 1.4 0 0 1 2 0l0.5 0.5a1.4 1.4 0 0 1 0 2L6.8 15.8Z'/><line x1='12.1' y1='5.2' x2='14.8' y2='7.9'/></svg></a>
 --><a href="https://raphcoda.github.io/spielplan_web-app/notes/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#1e1e1e;color:#bbb;font-size:11px;font-weight:bold;text-decoration:none;border-top:1px solid #585858;border-bottom:1px solid #0d0d0d;border-left:1px solid #484848;border-right:1px solid #0d0d0d;margin-right:10px;flex-shrink:0;position:relative;top:1px" class="dn-btn" title="NOTES – Live-Notizen der Tonabteilung"><svg width='13' height='13' viewBox='0 0 20 20' fill='none' stroke='#bbb' stroke-width='1.35' stroke-linejoin='round' stroke-linecap='round'><path d='M3.4 16.6l0.8-3.4L13.4 3.9a1.4 1.4 0 0 1 2 0l0.5 0.5a1.4 1.4 0 0 1 0 2L6.8 15.8Z'/><line x1='12.1' y1='5.2' x2='14.8' y2='7.9'/></svg></a><span id="about-desk" onclick="document.getElementById('info-modal').style.display='flex'" title="Über die Produktionsdatenbank">?</span><button onclick="window.kalScale=kalBasisScale();window.kalZoom=null;window.kalZoomTage=null;openKalender()" title="Produktionskalender 26/27" style="background:#0d2020;color:#63f0f0;border-top:1px solid #2a5555;border-bottom:1px solid #080f0f;border-left:1px solid #1a4040;border-right:1px solid #080f0f;border-radius:3px;font-size:11px;font-weight:bold;height:20px;box-sizing:border-box;padding:0 9px;cursor:pointer;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;position:relative;top:1px" id="kal-btn"><svg class="kal-pfeil" width="17" height="9" viewBox="0 0 17 9" fill="none" stroke="#63f0f0" stroke-width="1.4" style="display:none;flex-shrink:0"><line x1="0.5" y1="4.5" x2="14" y2="4.5" stroke-linecap="round"/><polyline points="10.5,1.5 14,4.5 10.5,7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>KALENDER</button></h1>
   <div style="display:block;width:100%;">
@@ -629,8 +671,8 @@ input[type=date]::-webkit-calendar-picker-indicator { filter: invert(0.8) bright
   </div>
   <div id="menu-drop">
     <span class="mi mi-about" style="color:#7fcfcf" onclick="schliesseMenu();document.getElementById('info-modal').style.display='flex'">ABOUT</span>
-    <a href="https://raphcoda.github.io/spielplan_web-app/ablaufplan/" target="_blank" rel="noopener noreferrer" onclick="schliesseMenu()">ABLAUFPLAN</a>
-    <a href="https://raphcoda.github.io/spielplan_web-app/Logbuch/" target="_blank" rel="noopener noreferrer" onclick="schliesseMenu()">LOGBUCH</a>
+    <a href="https://raphcoda.github.io/spielplan_web-app/ablaufplan/" target="_blank" rel="noopener noreferrer" class="mi-nurmob" onclick="schliesseMenu()">TONDOKU</a>
+    <a href="https://raphcoda.github.io/spielplan_web-app/Logbuch/" target="_blank" rel="noopener noreferrer" class="mi-nurmob" onclick="schliesseMenu()">LOGBUCH</a>
     <span class="mi" onclick="zeigeKontakte()">KONTAKTE</span>
     <a href="https://teamup.com/ks119b0a3494b39295" target="_blank" rel="noopener noreferrer" onclick="schliesseMenu()">ORCH.PROBERAUM KP</a>
     <a href="https://www.opernhaus.ch/tv/" target="_blank" rel="noopener noreferrer" onclick="schliesseMenu()">BESETZUNG-SCREEN</a>
@@ -4360,8 +4402,8 @@ filterAktuell();
       <div style="height:1px;background:#4d4d4d;margin:22px 0 18px"></div>
       <p style="margin-top:0">Die Daten des Spielplans basieren auf den Spielplanunterlagen der technischen Direktion, des KBB sowie der Website des Opernhauses Z&uuml;rich. &Auml;nderungen w&auml;hrend laufender Spielzeit sind m&ouml;glicherweise nicht ber&uuml;cksichtigt, werden aber kontinuierlich aktualisiert.</p>
       <p>Diese WebApp ist als Hilfsmittel f&uuml;r den Produktionsalltag gedacht. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t der Inhalte wird keine Gew&auml;hr &uuml;bernommen.</p>
-      <p style="margin-top:20px">R&uuml;ckmeldungen zu Funktionsfehlern, unvollst&auml;ndigen Angaben sowie Verbesserungsvorschl&auml;ge an: <a href="mailto:Raphael.Paciorek@opernhaus.ch?subject=SPiELPLAN_iNFO_OHZ v_ton_sp_gh_a_221026_0850x" style="color:inherit;text-decoration:underline">Raphael.Paciorek@opernhaus.ch</a></p>
-      <p style="color:#888;margin-top:8px">v_ton_sp_gh_a_221026_0850x</p>
+      <p style="margin-top:20px">R&uuml;ckmeldungen zu Funktionsfehlern, unvollst&auml;ndigen Angaben sowie Verbesserungsvorschl&auml;ge an: <a href="mailto:Raphael.Paciorek@opernhaus.ch?subject=SPiELPLAN_iNFO_OHZ v_ton_sp_gh_a_241026_1220x" style="color:inherit;text-decoration:underline">Raphael.Paciorek@opernhaus.ch</a></p>
+      <p style="color:#888;margin-top:8px">v_ton_sp_gh_a_241026_1220x</p>
       <p class="pb-stand-rm" style="color:#888;margin-top:2px">PB aktual. 17.10.2026 (KW43-44)</p>
       </div>
   </div>
